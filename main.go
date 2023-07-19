@@ -37,7 +37,7 @@ func main() {
 		fmt.Println("WEBDAV_ADDRESSBOOK", addressBook)
 		fmt.Println("WEBDAV_USERNAME", username)
 		fmt.Println("WEBDAV_PASSWORD", password)
-		fmt.Println("WEEB_HOOK", webhoookUrl)
+		fmt.Println("WEEB_HOOK", webhookUrl)
 		fmt.Println("DATE_LAYOUT", dateLayout)
 		fmt.Println("BOT_NAME", botName)
 		fmt.Println("ICON_URL", iconUrl)
