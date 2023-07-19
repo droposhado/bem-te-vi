@@ -10,6 +10,7 @@ The message is simple format so it can be bridged and delivered on IRC too.
 
 | Variable | Description | Required | Default |
 | --------------- | --------------- | --------------- | --------------- |
+| BTV_DEBUG | Show sensitive info about connection and other relevant things | N | |
 | WEBDAV_SERVER | Server domain or subdomain url | Y | |
 | WEBDAV_ADRESSBOOK | Path representing the address book in the DAV service | Y | |
 | WEBDAV_USERNAME | Username used in DAV service | Y | |

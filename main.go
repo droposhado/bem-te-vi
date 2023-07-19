@@ -22,6 +22,7 @@ type Payload struct {
 
 func main() {
 
+	btvDebug := os.Getenv("BTV_DEBUG")
 	server := os.Getenv("WEBDAV_SERVER")
 	addressBook := os.Getenv("WEBDAV_ADRESSBOOK")
 	username := os.Getenv("WEBDAV_USERNAME")
@@ -30,6 +31,17 @@ func main() {
 	dateLayout := os.Getenv("DATE_LAYOUT")
 	botName := os.Getenv("BOT_NAME")
 	iconUrl := os.Getenv("ICON_URL")
+
+	if btvDebug != "" {
+		fmt.Println("WEBDAV_SERVER", server)
+		fmt.Println("WEBDAV_ADDRESSBOOK", addressBook)
+		fmt.Println("WEBDAV_USERNAME", username)
+		fmt.Println("WEBDAV_PASSWORD", password)
+		fmt.Println("WEEB_HOOK", webhoookUrl)
+		fmt.Println("DATE_LAYOUT", dateLayout)
+		fmt.Println("BOT_NAME", botName)
+		fmt.Println("ICON_URL", iconUrl)
+	}
 
 	var webDavClient webdav.HTTPClient = http.DefaultClient
 	if username != "" {
@@ -87,8 +99,10 @@ func main() {
 				IconUrl:  iconUrl,
 			}
 
-			fmt.Printf("%#v\n", payload)
-			fmt.Printf("%s\n", message)
+			if btvDebug != "" {
+				fmt.Printf("%#v\n", payload)
+				fmt.Printf("%s\n", message)
+			}
 
 			dataBytes := new(bytes.Buffer)
 			err := json.NewEncoder(dataBytes).Encode(payload)
@@ -106,10 +120,11 @@ func main() {
 				log.Fatalln(err)
 			}
 
-			fmt.Println("STATUS CODE", resp.StatusCode)
 			s, _ := ioutil.ReadAll(resp.Body)
-			fmt.Println("STATUS CODE", string(s))
-
+			if btvDebug != "" {
+				fmt.Println("STATUS CODE", resp.StatusCode)
+				fmt.Println("STATUS CODE", string(s))
+			}
 		}
 	}
 
