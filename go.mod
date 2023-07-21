@@ -2,6 +2,6 @@ module github.com/droposhado/bem-te-vi
 
 go 1.17
 
-require github.com/emersion/go-webdav v0.3.1
+require github.com/emersion/go-webdav v0.4.0
 
-require github.com/emersion/go-vcard v0.0.0-20191221110513-5f81fa0d3cc7 // indirect
+require github.com/emersion/go-vcard v0.0.0-20230626131229-38c18b295bbd // indirect
