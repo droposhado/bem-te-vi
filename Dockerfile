@@ -1,4 +1,4 @@
-FROM golang:1.19.1
+FROM golang:1.19.11-alpine
 
 WORKDIR /bem-te-vi
 
