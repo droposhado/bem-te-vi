@@ -16,7 +16,6 @@ The message is simple format so it can be bridged and delivered on IRC too.
 | WEBDAV_USERNAME | Username used in DAV service | Y | |
 | WEBDAV_PASSWORD | Password used in DAV service | Y | |
 | WEBHOOK_URL | Slack compatible webhook | Y | |
-| DATE_LAYOUT | Date parse mask | N | 2006-01-02T15:04:05Z |
 | BOT_NAME | The name of the bot on chat | N | Bot defined |
 | ICON_URL | Avatar of bot | N | Bot defined or service default user icon |
 

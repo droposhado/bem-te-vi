@@ -10,6 +10,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/araddon/dateparse"
 	"github.com/emersion/go-webdav"
 	"github.com/emersion/go-webdav/carddav"
 )
@@ -28,7 +29,6 @@ func main() {
 	username := os.Getenv("WEBDAV_USERNAME")
 	password := os.Getenv("WEBDAV_PASSWORD")
 	webhookUrl := os.Getenv("WEBHOOK_URL")
-	dateLayout := os.Getenv("DATE_LAYOUT")
 	botName := os.Getenv("BOT_NAME")
 	iconUrl := os.Getenv("ICON_URL")
 
@@ -38,7 +38,6 @@ func main() {
 		fmt.Println("WEBDAV_USERNAME", username)
 		fmt.Println("WEBDAV_PASSWORD", password)
 		fmt.Println("WEEB_HOOK", webhookUrl)
-		fmt.Println("DATE_LAYOUT", dateLayout)
 		fmt.Println("BOT_NAME", botName)
 		fmt.Println("ICON_URL", iconUrl)
 	}
@@ -70,11 +69,7 @@ func main() {
 			continue
 		}
 
-		if dateLayout == "" {
-			dateLayout = "2006-01-02T15:04:05Z"
-		}
-
-		t, err := time.Parse(dateLayout, birthDay)
+		t, err := dateparse.ParseLocal(birthDay)
 		if err != nil {
 			fmt.Println("Error while parsing date :", err)
 		}
