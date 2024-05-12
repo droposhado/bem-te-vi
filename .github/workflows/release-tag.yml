@@ -1,4 +1,4 @@
-name: release quayio tag
+name: release tag
 on:
   push:
     tags:
@@ -17,7 +17,7 @@ jobs:
         uses: ncipollo/semantic-version-action@v1
         id: tag
 
-  build-push:
+  build-push-quayio:
     needs:
       - extraction
     uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
@@ -28,5 +28,19 @@ jobs:
       tag: ${{ needs.extraction.outputs.tag }}
       push: true
     secrets:
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
+      username: ${{ secrets.QUAYIO_USERNAME }}
+      password: ${{ secrets.QUAYIO_PASSWORD }}
+
+  build-push-dockerio:
+    needs:
+      - extraction
+    uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      registry: quay.io
+      repo: droposhado/bem-te-vi
+      platforms: "linux/amd64,linux/arm64"
+      tag: ${{ needs.extraction.outputs.tag }}
+      push: true
+    secrets:
+      username: ${{ secrets.DOCKERIO_USERNAME }}
+      password: ${{ secrets.DOCKERIO_PASSWORD }}

@@ -1,0 +1,33 @@
+name: release dev
+on:
+  push:
+    branches:
+      - dev
+
+  workflow_dispatch:
+
+jobs:
+
+  build-push-quayio:
+    uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      registry: quay.io
+      repo: droposhado/bem-te-vi
+      platforms: "linux/amd64,linux/arm64"
+      tag: dev
+      push: true
+    secrets:
+      username: ${{ secrets.QUAYIO_USERNAME }}
+      password: ${{ secrets.QUAYIO_PASSWORD }}
+
+  build-push-dockerio:
+    uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      registry: docker.io
+      repo: droposhado/bem-te-vi
+      platforms: "linux/amd64,linux/arm64"
+      tag: dev
+      push: true
+    secrets:
+      username: ${{ secrets.DOCKERIO_USERNAME }}
+      password: ${{ secrets.DOCKERIO_PASSWORD }}
